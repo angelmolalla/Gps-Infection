@@ -1,35 +1,40 @@
 const User = require("../model/users.model");
-const geolocation = require("../api/geolocation");
+const locationIq = require("../api/locationIq");
 const moment = require("moment");
 const utils = require("../helpers/utils");
 const userValidation = require("../validation/user.validation");
 const geolocationValidation = require("../validation/geolocation.validation");
 
 exports.create = async (req, res, next) => {
-  let errors = [];
+  let errors = {};
   if (!req.body) {
     return res.status(400).send({
-      message: "User content can not be empty",
+      typeError: "Error empty data",
+      error: "User content can not be empty",
     });
   }
   errors = userValidation.validateCreateUser(req.body);
-  if (errors.length > 0) {
-    return res.send(errors);
+  if (errors.data) {
+    return res.status(errors.status).send({
+      typeError: errors.typeError,
+      error: errors.data,
+    });
   }
   let { name, email, password, latitude, longitude } = req.body;
   let emailUser = await User.findOne({ email: email });
   if (emailUser) {
-    return res.status(500).send({
-      message: "The email is already in use",
+    return res.status(406).send({
+      typeError: "Error incorrect data",
+      error: "The email is already in use",
     });
   }
-  let geo = await geolocation.findLocation(latitude, longitude);
+  let geo = await locationIq.findLocation(latitude, longitude);
   errors = geolocationValidation.validateCoordinates(geo);
-  console.log("New register to user");
-  console.log("location:");
-  console.log(geo);
-  if (errors.length > 0) {
-    return res.send(errors);
+  if (errors.data) {
+    return res.status(errors.status).send({
+      typeError: errors.typeError,
+      error: errors.data,
+    });
   }
   let { state, county } = geo;
   let saltHash = utils.genPassword(password);
@@ -57,22 +62,26 @@ exports.create = async (req, res, next) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Something wrong while creating the User.",
+        typeError: "Error internal server",
+        error: err.message || "Something wrong while creating the User.",
       });
     });
 };
 
 exports.login = async (req, res) => {
-  let errors = [];
-  // Request validation
+  let errors = {};
   if (!req.body) {
     return res.status(400).send({
-      message: "User content can not be empty",
+      typeError: "Error empty data",
+      error: "User content can not be empty",
     });
   }
   errors = userValidation.validateLogin(req.body);
-  if (errors.length > 0) {
-    return res.send(errors);
+  if (errors.data) {
+    return res.status(errors.status).send({
+      typeError: errors.typeError,
+      error: errors.data,
+    });
   }
   let { email, password } = req.body;
   User.findOne({ email: email })
@@ -91,9 +100,11 @@ exports.login = async (req, res) => {
           expiresIn: tokenObject.expires,
         });
       } else {
-        res
-          .status(401)
-          .json({ success: false, msg: "you entered the wrong password" });
+        res.status(401).json({
+          success: false,
+          typeError: "Error incorrect data",
+          error: "you entered the wrong password",
+        });
       }
     })
     .catch((err) => {
@@ -108,17 +119,19 @@ exports.findAll = async (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Something wrong while get User",
+        typeError: "Error internal server",
+        error: err.message || "Something wrong while get User",
       });
     });
 };
 
 exports.findByEmail = async (req, res) => {
-  let errors = [];
   let email = req.params.email;
-  if (!email) errors.push({ text: "Please write a Email" });
-  if (errors.length > 0) {
-    return res.send(errors);
+  if (!email) {
+    return res.status(404).send({
+      typeError: "Error empty data",
+      error: "Please write a Email",
+    });
   }
   User.findOne({ email: email })
     .then((data) => {
@@ -126,7 +139,8 @@ exports.findByEmail = async (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Something wrong while get User",
+        typeError: "Error internal server",
+        error: err.message || "Something wrong while get User",
       });
     });
 };
