@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 
 mongoose
   .connect("mongodb://localhost/gps-infection", {
-    useCreateIndex: true,
     useNewUrlParser: true,
-    useFindAndModify: false,
+    useUnifiedTopology: true,
+    useCreateIndex:true
   })
   .then((db) => console.log("DB is connected"))
   .catch((error) => console.error(console.error()));

@@ -7,17 +7,17 @@ const passport = require("passport");
 
 //Initializations
 const app = express();
-require("./database");
-require("dotenv").config();
+require("./config/database");
 require('./config/passport')(passport);
-
 require('./model/users.model');
+
 //settings
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set("port", process.env.PORT || 3000);
 
 //Middleware
+require("dotenv").config();
 app.use(
   express.urlencoded({
     extended: false,
@@ -38,10 +38,10 @@ app.use((req, res, next) => {
   res.locals.user = req.user||null;
   next();
 });
+
 //Routes
 app.use(require("./routes/index"));
 app.use(require("./routes/users"));
-//Static Files
 
 //Server init
 app.listen(app.get("port"), () => {

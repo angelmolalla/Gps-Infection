@@ -20,7 +20,6 @@ exports.findLocation = async function (latitude, longitude) {
           }
         } else if (data.status.code == 402) {
           console.log("hit free-trial daily limit");
-          console.log("become a customer: https://opencagedata.com/pricing");
           reject("hit free-trial daily limit");
         } else {
           console.log("error", data.status.message);
