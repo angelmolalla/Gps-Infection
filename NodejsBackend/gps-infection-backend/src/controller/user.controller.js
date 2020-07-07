@@ -1,5 +1,6 @@
 const User = require("../model/users.model");
 const locationIq = require("../api/locationIq");
+const nodemailer = require("../api/nodemailer");
 const moment = require("moment");
 const utils = require("../helpers/utils");
 const userValidation = require("../validation/user.validation");
@@ -58,6 +59,7 @@ exports.create = async (req, res, next) => {
         data: data,
         dateLocal: moment(data.date).format("YYYY-MM-DD HH:mm:ss"),
       };
+      nodemailer.sendEmail(newUser);
       res.send(dataUser);
     })
     .catch((err) => {
@@ -125,6 +127,10 @@ exports.findAll = async (req, res) => {
     });
 };
 
+exports.verificationUser = async (req, res) => {
+  nodemailer.sendEmail();
+}
+  
 exports.findByEmail = async (req, res) => {
   let email = req.params.email;
   if (!email) {

@@ -12,10 +12,10 @@ require('./config/passport')(passport);
 require('./model/users.model');
 
 //settings
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set("port", process.env.PORT || 3000);
-
 //Middleware
 require("dotenv").config();
 app.use(
