@@ -1,3 +1,5 @@
+const express = require("express");
+const app = express();
 const User = require("../model/users.model");
 const locationIq = require("../api/locationIq");
 const nodemailer = require("../api/nodemailer");
@@ -5,6 +7,7 @@ const moment = require("moment");
 const utils = require("../helpers/utils");
 const userValidation = require("../validation/user.validation");
 const geolocationValidation = require("../validation/geolocation.validation");
+let ObjectId = require("mongodb").ObjectId;
 
 exports.create = async (req, res, next) => {
   let errors = {};
@@ -128,9 +131,61 @@ exports.findAll = async (req, res) => {
 };
 
 exports.verificationUser = async (req, res) => {
-  nodemailer.sendEmail();
-}
-  
+  let id = req.params.id;
+  if (!id) {
+    return res.render("NotFound", {
+      title: "Error datos vacíos",
+      subtitle: "Por favor escriba una identificación",
+    });
+  }
+  if (!ObjectId.isValid(id)) {
+    return res.render("NotFound", {
+      title: "Error datos no válidos",
+      subtitle: "Por favor, corrija el Id",
+    });
+  }
+
+  User.findOne({ _id: ObjectId(id) })
+    .then((data) => {
+      if(data==null)
+      {
+        return res.render("NotFound", {
+          title: "Error",
+          subtitle: "Usuario no encontrado",
+        });
+      }
+      if (Object.keys(data).length === 0) {
+        return res.render("NotFound", {
+          title: "Error",
+          subtitle: "Usuario no encontrado",
+        });
+      } else {
+        let newUser = data;
+        newUser.confirmed = true;
+        User.updateOne({ _id: ObjectId(id) }, newUser)
+          .then((data2) => {
+            return res.render("Ok");
+          })
+          .catch((err) => {
+            console.log("Error internal server");
+            console.log(err.message);
+            return res.render("InternalServerError", {
+              title: "Error interno del servidor",
+              subtitle: err.message,
+            });
+          });
+      }
+    })
+    .catch((err) => {
+      console.log("Error internal server");
+      console.log(err.message);
+      return res.render("InternalServerError", {
+        title: "Error interno del servidor",
+        subtitle: err.message,
+      });
+    });
+};
+
 exports.findByEmail = async (req, res) => {
   let email = req.params.email;
   if (!email) {
