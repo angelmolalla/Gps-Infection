@@ -172,7 +172,12 @@ exports.verificationUser = async (req, res) => {
 
   User.findOne({ _id: ObjectId(id) })
     .then((data) => {
+<<<<<<< HEAD
       if (data == null) {
+=======
+      if(data==null)
+      {
+>>>>>>> NodejsBackend
         return res.render("NotFound", {
           title: "Error",
           subtitle: "Usuario no encontrado",
