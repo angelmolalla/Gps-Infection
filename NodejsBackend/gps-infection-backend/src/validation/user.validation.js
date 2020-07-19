@@ -89,7 +89,7 @@ exports.validateAdminUser = function (user) {
   let { admin } = user;
 
   if (admin == false) {
-    errors.status = 400;
+    errors.status = 426;
     errors.typeError = "Error";
     errors.data = "You do not have permissions for this request";
     return errors;
