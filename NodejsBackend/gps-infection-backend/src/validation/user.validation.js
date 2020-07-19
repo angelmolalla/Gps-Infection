@@ -1,3 +1,5 @@
+const User = require("../model/users.model");
+const { search } = require("../routes/users");
 exports.validateCreateUser = function (user) {
   let errors = {};
   let { name, email, password, confirm_password, latitude, longitude } = user;
@@ -52,6 +54,17 @@ exports.validateCreateUser = function (user) {
   return errors;
 };
 
+exports.validateVerificationUser = function (user) {
+  let errors = {};
+  let { confirmed } = user;
+  if (confirmed == false) {
+    errors.status = 401;
+    errors.typeError = "Error Unauthorized ";
+    errors.data = "Please verify the account, through the link in your email ";
+    return errors;
+  }
+  return errors;
+};
 exports.validateLogin = function (user) {
   let errors = {};
   let { email, password } = user;
@@ -69,4 +82,33 @@ exports.validateLogin = function (user) {
     return errors;
   }
   return errors;
+};
+
+exports.validateAdminUser = function (user) {
+  let errors = {};
+  let { admin } = user;
+
+  if (admin == false) {
+    errors.status = 400;
+    errors.typeError = "Error";
+    errors.data = "You do not have permissions for this request";
+    return errors;
+  }
+  return errors;
+};
+
+exports.searchUserEmail = function (email) {
+  return new Promise(function (resolve, reject) {
+    User.findOne({ email: email })
+      .then((user) => {
+        if (!user) {
+          resolve(null);
+        } else {
+          resolve(user);
+        }
+      })
+      .catch((err) => {
+        resolve(null);
+      });
+  });
 };
