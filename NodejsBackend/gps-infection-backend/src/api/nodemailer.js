@@ -20,7 +20,7 @@ exports.sendEmail = async function (user) {
   return new Promise(function (resolve, reject) {
     const view = {
       system: {
-        url: `http://${process.env.DB_HOST}:${process.env.PORT}${process.env.pathUserVerification}/${user._id}`,
+        url: `${process.env.DB_HOST}/${process.env.pathUserVerification}/${user._id}`,
       },
       user: { name: user.name },
     };

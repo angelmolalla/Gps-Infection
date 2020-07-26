@@ -3,16 +3,7 @@ const router = express.Router();
 const county = require("../controller/county.controller");
 const passport = require("passport");
 
-router.get(
-  "/county/:id",
-  passport.authenticate("jwt", { session: false }),
-  county.findId
-);
-router.get(
-  "/county",
-  passport.authenticate("jwt", { session: false }),
-  county.findAll
-);
+router.get("/county/:id", county.findId);
 
 router.post(
   "/county",
@@ -26,4 +17,9 @@ router.put(
   county.update
 );
 
+router.put(
+  "/county/changeTrafficLightGovernmentCounty/:id",
+  passport.authenticate("jwt", { session: false }),
+  county.changeTrafficLightGovernmentCounty
+);
 module.exports = router;

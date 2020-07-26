@@ -1,6 +1,5 @@
 const userValidation = require("../validation/user.validation");
 const State = require("../model/state.model");
-
 exports.create = async (req, res, next) => {
   let errors = {};
   errors = userValidation.validateAdminUser(req.user);
@@ -17,15 +16,15 @@ exports.create = async (req, res, next) => {
     });
   }
 
-  let { id, name } = req.body;
-  let state = await State.findOne({ id: id });
+  let { idState, nameState } = req.body;
+  let state = await State.findOne({ idState });
   if (state) {
     return res.status(406).send({
       typeError: "Error incorrect data",
       error: "The id is already in state",
     });
   }
-  let newState = new State({ id, name });
+  let newState = new State({ idState, nameState });
   await newState
     .save()
     .then((data) => {
@@ -41,8 +40,8 @@ exports.create = async (req, res, next) => {
 
 exports.update = async (req, res, next) => {
   let errors = {};
-  let id = req.params.id;
-  let { name } = req.body;
+  let idState = req.params.id;
+  let { nameState } = req.body;
   errors = userValidation.validateAdminUser(req.user);
   if (errors.data) {
     return res.status(errors.status).send({
@@ -50,10 +49,10 @@ exports.update = async (req, res, next) => {
       error: errors.data,
     });
   }
-  let newState = await State.findOne({ id: id });
-  newState.name = name;
+  let newState = await State.findOne({ idState });
+  newState.nameState = nameState;
 
-  State.updateOne({ id: id }, newState)
+  State.updateOne({ idState }, newState)
     .then((data) => {
       res.send(newState);
     })
@@ -66,23 +65,15 @@ exports.update = async (req, res, next) => {
 };
 
 exports.findId = async (req, res, next) => {
-  let errors = {};
-  errors = userValidation.validateAdminUser(req.user);
-  if (errors.data) {
-    return res.status(errors.status).send({
-      typeError: errors.typeError,
-      error: errors.data,
-    });
-  }
-  let id = req.params.id;
-  if (!id) {
+  let idState = req.params.id;
+  if (!idState) {
     return res.status(404).send({
       typeError: "Error empty data",
       error: "Please write a id",
     });
   }
 
-  State.findOne({ id: id })
+  State.findOne({ idState })
     .then((data) => {
       res.send(data);
     })
@@ -95,15 +86,6 @@ exports.findId = async (req, res, next) => {
 };
 
 exports.findAll = async (req, res, next) => {
-  let errors = {};
-  errors = userValidation.validateAdminUser(req.user);
-  if (errors.data) {
-    return res.status(errors.status).send({
-      typeError: errors.typeError,
-      error: errors.data,
-    });
-  }
-
   State.find()
     .then((data) => {
       res.send(data);
