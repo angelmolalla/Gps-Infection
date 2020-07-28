@@ -25,6 +25,7 @@ exports.create = async (req, res, next) => {
     });
   }
   let newState = new State({ idState, nameState });
+  console.log(newState);
   await newState
     .save()
     .then((data) => {

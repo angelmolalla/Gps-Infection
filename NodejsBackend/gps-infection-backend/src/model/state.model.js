@@ -9,10 +9,11 @@ const StateSchema = new Schema({
   deadAnalysisState: { type: Number, default: 0 },
   positiveGovernmentState: { type: Number, default: 0 },
   deadGovernmentState: { type: Number, default: 0 },
+  dateReportingState: { type: Date, default: Date.now },
   counties: [
     {
-      idCounty: { type: Number, required: true, unique: true },
-      nameCounty: { type: String, required: true, unique: true },
+      idCounty: { type: Number, required: true, unique: true, sparse: true },
+      nameCounty: { type: String, required: true, unique: true, sparse: true },
       trafficLightGovernmentCounty: { type: String, default: "gray" },
       trafficLightAnalysisCounty: { type: String, default: "gray" },
       usersNumberCounty: { type: Number, default: 0 },
@@ -20,6 +21,8 @@ const StateSchema = new Schema({
       deadAnalysisCounty: { type: Number, default: 0 },
       positiveGovernmentCounty: { type: Number, default: 0 },
       deadGovernmentCounty: { type: Number, default: 0 },
+      dateReportingCounty: { type: Date, default: Date.now },
+      dateTrafficLightCounty: { type: Date, default: Date.now },
     },
   ],
 });

@@ -56,10 +56,9 @@ exports.create = async (req, res, next) => {
   newCounty.idCounty = idCounty;
   newCounty.nameCounty = nameCounty;
   state.counties.push(newCounty);
-
   State.updateOne({ idState }, state)
     .then((data) => {
-      res.send(state);
+      res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
@@ -110,6 +109,7 @@ exports.update = async (req, res, next) => {
 exports.changeTrafficLightGovernmentCounty = async (req, res, next) => {
   let errors = {};
   let id = req.params.id;
+  let dateNow = new Date();
   let { trafficLight } = req.body;
   errors = userValidation.validateAdminUser(req.user);
   if (errors.data) {
@@ -142,7 +142,10 @@ exports.changeTrafficLightGovernmentCounty = async (req, res, next) => {
   State.updateOne(
     { "counties.idCounty": id },
     {
-      $set: { "counties.$.trafficLightGovernmentCounty": trafficLight },
+      $set: {
+        "counties.$.trafficLightGovernmentCounty": trafficLight,
+        dateTrafficLightCounty: dateNow,
+      },
     }
   )
     .then((data) => {
@@ -163,4 +166,22 @@ exports.findId = async (req, res, next) => {
   }
   let county = state.counties.find((element) => element.idCounty == id);
   return res.send(county);
+};
+
+exports.findAll = async (req, res, next) => {
+  let states = await State.find();
+
+  let countiesList = [];
+
+  for (state of states) {
+    let counties = state.counties;
+
+    if (counties) {
+      for (county of counties) {
+        countiesList.push(county);
+      }
+    }
+  }
+
+  return res.send(countiesList);
 };

@@ -4,6 +4,7 @@ const county = require("../controller/county.controller");
 const passport = require("passport");
 
 router.get("/county/:id", county.findId);
+router.get("/counties", county.findAll);
 
 router.post(
   "/county",
@@ -18,7 +19,7 @@ router.put(
 );
 
 router.put(
-  "/county/changeTrafficLightGovernmentCounty/:id",
+  "/county/changeTrafficLightGovernment/:id",
   passport.authenticate("jwt", { session: false }),
   county.changeTrafficLightGovernmentCounty
 );
