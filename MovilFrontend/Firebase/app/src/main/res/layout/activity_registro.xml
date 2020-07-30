@@ -15,12 +15,13 @@
         android:gravity="center"
         android:text="NOMBRE"
         android:textColor="#FFFFFF"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/nombre"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="43dp"
         android:background="@color/common_google_signin_btn_text_dark_default"
         android:ems="15"
         android:inputType="textPersonName"
@@ -34,12 +35,14 @@
         android:gravity="center"
         android:text="CORREO ELECTRONICO"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
-        tools:textSize="24sp" />
+        tools:textSize="24sp"
+        android:textStyle="bold"
+        />
 
     <EditText
         android:id="@+id/Apellido"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:background="@color/common_google_signin_btn_text_dark_default"
         android:ems="10"
         android:inputType="textPersonName"
@@ -53,12 +56,14 @@
         android:gravity="center"
         android:text="CONTRASEÑA"
         android:textColor="#FFFFFF"
-        tools:textSize="24sp" />
+        tools:textSize="24sp"
+        android:textStyle="bold"
+        />
 
     <EditText
         android:id="@+id/correoLog"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:background="@color/common_google_signin_btn_text_dark_default"
         android:ems="10"
         android:inputType="textEmailAddress"
@@ -72,31 +77,38 @@
         android:gravity="center"
         android:text="CONFIRMAR CONTRASEÑA"
         android:textColor="#FFFFFF"
-        tools:textSize="24sp" />
+        tools:textSize="24sp"
+        android:textStyle="bold"
+        />
 
     <EditText
         android:id="@+id/claveLog"
         android:layout_width="match_parent"
-        android:layout_height="43dp"
+        android:layout_height="51dp"
         android:background="@color/common_google_signin_btn_text_dark_default"
         android:ems="10"
         android:inputType="textPassword"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         tools:textSize="24sp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:orientation="vertical"></LinearLayout>
+
     <Button
         android:id="@+id/Ingresar"
-        style="@android:style/Widget.DeviceDefault.Button.Borderless.Colored"
         android:layout_width="161dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="?android:attr/colorForegroundInverse"
         android:text="REGISTRAR"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <pl.droidsonroids.gif.GifImageView
-        android:layout_width="240dp"
-        android:layout_height="360dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/mundo"
         app:layout_constraintBottom_toBottomOf="parent"
