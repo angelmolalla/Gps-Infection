@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/f"
+    android:orientation="vertical"
+    tools:context=".Registra">
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:gravity="center"
+        android:text="NOMBRE"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/nombre"
+        android:layout_width="348dp"
+        android:layout_height="43dp"
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
+        android:ems="15"
+        android:inputType="textPersonName"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        tools:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:gravity="center"
+        android:text="CORREO ELECTRONICO"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        tools:textSize="24sp"
+        android:textStyle="bold"
+        />
+
+    <EditText
+        android:id="@+id/Apellido"
+        android:layout_width="348dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        tools:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="CONTRASEÑA"
+        android:textColor="#FFFFFF"
+        tools:textSize="24sp"
+        android:textStyle="bold"
+        />
+
+    <EditText
+        android:id="@+id/correoLog"
+        android:layout_width="348dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        tools:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:gravity="center"
+        android:text="CONFIRMAR CONTRASEÑA"
+        android:textColor="#FFFFFF"
+        tools:textSize="24sp"
+        android:textStyle="bold"
+        />
+
+    <EditText
+        android:id="@+id/claveLog"
+        android:layout_width="348dp"
+        android:layout_height="51dp"
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        tools:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:orientation="vertical"></LinearLayout>
+
+    <Button
+        android:id="@+id/Ingresar"
+        android:layout_width="161dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@android:drawable/editbox_background"
+        android:text="REGISTRAR"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+
+</LinearLayout>
