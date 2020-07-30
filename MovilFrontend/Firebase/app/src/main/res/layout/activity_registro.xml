@@ -20,12 +20,13 @@
 
     <EditText
         android:id="@+id/nombre"
-        android:layout_width="match_parent"
+        android:layout_width="348dp"
         android:layout_height="43dp"
-        android:background="@color/common_google_signin_btn_text_dark_default"
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
         android:ems="15"
         android:inputType="textPersonName"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         tools:textSize="24sp" />
 
     <TextView
@@ -41,12 +42,13 @@
 
     <EditText
         android:id="@+id/Apellido"
-        android:layout_width="match_parent"
+        android:layout_width="348dp"
         android:layout_height="48dp"
-        android:background="@color/common_google_signin_btn_text_dark_default"
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
         android:ems="10"
         android:inputType="textPersonName"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         tools:textSize="24sp" />
 
     <TextView
@@ -62,12 +64,13 @@
 
     <EditText
         android:id="@+id/correoLog"
-        android:layout_width="match_parent"
+        android:layout_width="348dp"
         android:layout_height="45dp"
-        android:background="@color/common_google_signin_btn_text_dark_default"
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         tools:textSize="24sp" />
 
     <TextView
@@ -83,12 +86,13 @@
 
     <EditText
         android:id="@+id/claveLog"
-        android:layout_width="match_parent"
+        android:layout_width="348dp"
         android:layout_height="51dp"
-        android:background="@color/common_google_signin_btn_text_dark_default"
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
         android:ems="10"
         android:inputType="textPassword"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         tools:textSize="24sp" />
 
     <LinearLayout
@@ -101,21 +105,10 @@
         android:layout_width="161dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="?android:attr/colorForegroundInverse"
+        android:background="@android:drawable/editbox_background"
         android:text="REGISTRAR"
         android:textSize="24sp"
         android:textStyle="bold" />
-
-    <pl.droidsonroids.gif.GifImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/mundo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.29" />
 
 
 </LinearLayout>
