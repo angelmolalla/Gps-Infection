@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/er"
+    android:orientation="vertical"
+    tools:context=".botones">
+
+  <Space
+      android:layout_width="match_parent"
+      android:layout_height="81dp" />
+
+  <Button
+      android:id="@+id/informacion"
+      style="@style/Widget.AppCompat.Button.Colored"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:text="INFORMACION"
+      android:textSize="24sp" />
+
+  <Space
+      android:layout_width="match_parent"
+      android:layout_height="157dp" />
+
+  <Button
+      android:id="@+id/mapa"
+      style="@style/Widget.AppCompat.Button.Colored"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:text="MAPA"
+      android:textSize="24sp" />
+
+  <Space
+      android:layout_width="match_parent"
+      android:layout_height="157dp" />
+
+  <Button
+      android:id="@+id/test"
+      style="@style/Widget.AppCompat.Button.Colored"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:text="TEST"
+      android:textSize="24sp" />
+</LinearLayout>
