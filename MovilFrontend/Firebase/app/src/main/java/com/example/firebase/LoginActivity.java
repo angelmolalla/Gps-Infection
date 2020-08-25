@@ -67,6 +67,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
 
+<<<<<<< HEAD
+=======
+                    Intent intent=new Intent(LoginActivity.this,botones.class);
+                    startActivity(intent);
+>>>>>>> ac1ca67ef0cdd072bf9e97c24c569c5215de4818
                 }
                 else{
                     Toast.makeText(LoginActivity.this, "No se encontro el usuario", Toast.LENGTH_SHORT).show();
