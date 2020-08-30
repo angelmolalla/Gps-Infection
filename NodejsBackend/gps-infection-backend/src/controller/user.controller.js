@@ -76,6 +76,8 @@ exports.create = async (req, res, next) => {
 exports.login = async (req, res) => {
   let errors = {};
   let user = {};
+  console.log(req.body);
+
   if (!req.body) {
     return res.status(400).send({
       typeError: "Error empty data",
@@ -119,6 +121,7 @@ exports.login = async (req, res) => {
           success: true,
           token: tokenObject.token,
           expiresIn: tokenObject.expires,
+          admin: user.admin,
         });
       } else {
         res.status(401).json({
@@ -172,8 +175,7 @@ exports.verificationUser = async (req, res) => {
 
   User.findOne({ _id: ObjectId(id) })
     .then((data) => {
-      if(data==null)
-      {
+      if (data == null) {
         return res.render("NotFound", {
           title: "Error",
           subtitle: "Usuario no encontrado",

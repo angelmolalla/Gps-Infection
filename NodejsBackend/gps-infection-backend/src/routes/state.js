@@ -16,6 +16,18 @@ router.put(
   "/state/:id",
   passport.authenticate("jwt", { session: false }),
   state.update
-);  
+);
+
+router.post(
+  "/state/sendReportPositive",
+  passport.authenticate("jwt", { session: false }),
+  state.sendReportPositive
+);
+
+router.post(
+  "/state/sendReportDeath",
+  passport.authenticate("jwt", { session: false }),
+  state.sendReportDeath
+);
 
 module.exports = router;
